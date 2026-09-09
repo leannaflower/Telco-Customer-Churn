@@ -11,8 +11,9 @@ from data_loader import load_clean
 OUTPUT_SPOT = Path(__file__).parent.parent / "outputs"
 OUTPUT_SPOT.mkdir(exist_ok=True)
 
-def churn_rate_by(df, column, ax=None):
-    """ bar chart of churn rate grouped by a categorical column """
+def churn_rate_by(df, column, ax=None): 
+    # draws a column's churn rate bar chart into its assigned subplot
+    #this function is called in run_eda
     rates = df.groupby(column)["Churn"].mean().sort_values(ascending=False)
     ax = rates.plot(kind='bar', ax=ax, color='#4C72B0')
     ax.set_ylabel("Churn Rate")
@@ -24,9 +25,9 @@ def run_eda(df):
     #the categorical driver for the dataset
     segments = ["Contract", "PaymentMethod", "InternetService", "TechSupport"]
 
-    fig, axes = plt.subplots(2, 2, figsize=(12,9))
-    for ax, col in zip(axes.flat, segments):
-        churn_rate_by(df, col, ax=ax)
+    fig, axes = plt.subplots(2, 2, figsize=(12,9))  #building a 2x2 grid of subplots
+    for ax, col in zip(axes.flat, segments):    #pairs each of the 4 subplot axes with one of the segments
+        churn_rate_by(df, col, ax=ax)   #for each subplot (segments)
         ax.tick_params(axis="x", rotation=30)
     fig.tight_layout()
     fig.savefig(OUTPUT_SPOT / "churn_by_segment.png", dpi=150)
