@@ -19,7 +19,7 @@ The dataset lives in the `Data` folder as `WA_Fn-UseC_-Telco-Customer-Churn.csv`
 5. `src/explain_shap.py` uses SHAP to explain what the XGBoost model is picking up on, both overall and for individual customers.
 6. `src/main.py` ties the pipeline together.
 
-## Getting started
+## Getting started!
 
 First, install the dependencies, and then you can run the scipts!
 
